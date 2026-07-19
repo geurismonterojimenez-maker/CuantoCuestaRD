@@ -45,7 +45,7 @@ export default function CalculadoraCourierRD() {
     },
     {
       question: '¿Qué pasa si mi paquete pasa de US$ 200?',
-      answer: 'Si el valor de los artículos del paquete supera los US$ 200 FOB, pierde la exención de impuestos (de minimis) en aduanas dominicanas. Deberás pagar aranceles (normalmente 20% sobre el valor CIF) e ITBIS (18% sobre CIF + aranceles), además de un recargo administrativo del courier por el trámite de desaduanado.'
+      answer: 'Si el envío supera el límite de US$ 200 o Aduanas determina que tiene finalidad comercial, puede quedar sujeto a impuestos y al proceso de desaduanización. El arancel depende de la clasificación de la mercancía; por eso la estimación de la calculadora debe confirmarse con el courier o la Dirección General de Aduanas.'
     },
     {
       question: '¿Qué es el valor CIF y cómo afecta mis impuestos?',
@@ -54,6 +54,14 @@ export default function CalculadoraCourierRD() {
     {
       question: '¿Puedo calcular mi envío en pesos o dólares?',
       answer: 'Sí. Puedes escribir el precio en US$ o RD$ y la herramienta convierte el monto usando la tasa del dólar que indiques. El resultado es aproximado y puede variar según courier y tasa aplicada.'
+    },
+    {
+      question: '¿Se cobra el peso real o el peso volumétrico?',
+      answer: 'Depende del courier y del tipo de transporte. Los paquetes grandes y livianos pueden cobrarse por peso volumétrico. Antes de comprar, revisa las dimensiones del empaque y la política de redondeo o libra mínima de tu proveedor.'
+    },
+    {
+      question: '¿Varios paquetes menores de US$ 200 siempre quedan exentos?',
+      answer: 'No necesariamente. Aduanas puede evaluar envíos relacionados, frecuencia, cantidad y naturaleza de los artículos para determinar si existe finalidad comercial o si varios trámites deben considerarse en conjunto.'
     }
   ];
 
@@ -481,6 +489,54 @@ export default function CalculadoraCourierRD() {
       <div style={{ marginTop: '2rem' }}>
         <DisclaimerBox type="courier" />
       </div>
+
+      <section className="card" style={{ marginTop: '2rem' }} aria-labelledby="guia-courier-rd">
+        <h2 id="guia-courier-rd">Cómo estimar el costo real de una compra por courier</h2>
+        <p>
+          El precio que muestra la tienda no es el costo final puesto en República Dominicana. Para hacer una comparación útil
+          debes sumar el producto, el envío dentro de Estados Unidos, el seguro si aplica, la tarifa del courier y cualquier
+          cargo aduanal. La calculadora mantiene esas partidas separadas para que puedas identificar cuál encarece la compra.
+        </p>
+
+        <div className="grid-2" style={{ marginTop: '1.25rem' }}>
+          <div>
+            <h3>Antes de comprar</h3>
+            <ul>
+              <li>Confirma el peso y las dimensiones del paquete, no solamente las del producto.</li>
+              <li>Revisa si el courier redondea fracciones o cobra una libra mínima.</li>
+              <li>Incluye impuestos de venta y envío interno cuando formen parte de la factura.</li>
+              <li>Comprueba si el artículo tiene restricciones, permisos o manejo especial.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Cuando el envío supera US$ 200</h3>
+            <p>
+              El límite no significa que todos los artículos paguen el mismo porcentaje. La clasificación arancelaria, el valor
+              declarado, el seguro, el flete y la finalidad del envío pueden cambiar el total. Usa el resultado como escenario
+              de planificación y solicita una cotización formal antes de importar un artículo costoso.
+            </p>
+          </div>
+        </div>
+
+        <h3 style={{ marginTop: '1.25rem' }}>Ejemplo sencillo para comparar couriers</h3>
+        <p>
+          Si un producto pesa 3 libras, compara la tarifa por libra, el redondeo, el seguro y los cargos fijos de cada empresa.
+          Un courier con una tarifa ligeramente menor puede terminar costando más si aplica una libra mínima, peso volumétrico
+          o recargos que otro proveedor incluye en su precio. La comparación correcta se hace con el total puesto en RD.
+        </p>
+
+        <div className="connections-actions" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: '1.25rem' }}>
+          <Link to="/comparador-courier-rd" className="btn btn-secondary">
+            Comparar tarifas de courier <ArrowRight size={16} />
+          </Link>
+          <Link to="/calculadora-amazon-rd" className="btn btn-secondary">
+            Calcular compra de Amazon <ArrowRight size={16} />
+          </Link>
+          <Link to="/impuestos-paquetes-mas-de-200-dolares-rd" className="btn btn-secondary">
+            Entender impuestos sobre US$ 200 <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
 
       <AdSlot id="courier-before-faq" placement="Courier - Antes del FAQ" />
 

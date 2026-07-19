@@ -47,6 +47,14 @@ export default function CostoVidaRD() {
     {
       question: '¿Cómo influye el tamaño de la familia en el costo de vida?',
       answer: 'A medida que se agregan miembros al hogar, categorías como supermercado, salud y educación incrementan sustancialmente el gasto. Sin embargo, existen economías de escala donde gastos como alquiler, internet y servicios básicos no aumentan de forma proporcional.'
+    },
+    {
+      question: '¿El resultado incluye alquiler y deudas?',
+      answer: 'Sí, siempre que los agregues al formulario. La calculadora no parte de un promedio genérico: suma alquiler, comida, transporte, servicios, salud, educación, deudas, entretenimiento, ahorro y otros gastos según tu situación.'
+    },
+    {
+      question: '¿Por qué el costo de vida cambia tanto entre ciudades de RD?',
+      answer: 'La vivienda, el transporte diario y algunos servicios cambian por zona. También influye si trabajas desde casa, tienes vehículo, pagas colegio, compartes alquiler o ya tienes vivienda propia. Por eso conviene usar gastos reales y no una cifra nacional aislada.'
     }
   ];
 
@@ -500,6 +508,55 @@ export default function CostoVidaRD() {
       <div style={{ marginTop: '2rem' }}>
         <DisclaimerBox type="finanzas" />
       </div>
+
+      <section className="card" style={{ marginTop: '2rem' }} aria-labelledby="guia-costo-vida-rd">
+        <h2 id="guia-costo-vida-rd">Cómo calcular cuánto necesitas para vivir en República Dominicana</h2>
+        <p>
+          No existe una sola cifra que describa el costo de vida de todo el país. Dos hogares con el mismo ingreso pueden
+          necesitar presupuestos muy distintos si uno paga alquiler en una zona céntrica, usa vehículo todos los días o tiene
+          hijos en edad escolar. Esta herramienta parte de tus gastos y te permite separar tres preguntas diferentes: cuánto
+          gastas hoy, cuánto necesitas para cubrir lo básico y qué ingreso te dejaría margen para imprevistos.
+        </p>
+
+        <div className="grid-2" style={{ marginTop: '1.25rem' }}>
+          <div>
+            <h3>Empieza por los gastos que no puedes evitar</h3>
+            <p>
+              Anota primero alquiler o cuota de vivienda, supermercado, transporte, electricidad, agua, internet, salud y
+              pagos mínimos de deuda. Usa el promedio de los últimos tres meses cuando un gasto cambie mucho. Así evitas
+              construir el presupuesto alrededor de un mes excepcionalmente barato o caro.
+            </p>
+          </div>
+          <div>
+            <h3>Separa sobrevivir de vivir con estabilidad</h3>
+            <p>
+              El total ajustado cubre lo que declaraste. El ingreso recomendado añade un margen para reparaciones, consultas
+              médicas, alzas de precios y otros gastos que no llegan todos los meses. Ese margen no sustituye un fondo de
+              emergencia, pero muestra cuándo el presupuesto está demasiado apretado.
+            </p>
+          </div>
+        </div>
+
+        <h3 style={{ marginTop: '1.25rem' }}>Qué revisar antes de tomar una decisión</h3>
+        <ul>
+          <li>Compara barrios y ciudades usando el costo total de vivienda y transporte, no solamente el alquiler.</li>
+          <li>No cuentes una tarjeta de crédito como ingreso; registra su pago dentro de las deudas.</li>
+          <li>Incluye ahorro como una partida mensual si quieres conocer el ingreso necesario para avanzar, no solo subsistir.</li>
+          <li>Actualiza electricidad, combustible y supermercado cuando cambien tus hábitos o el tamaño del hogar.</li>
+        </ul>
+
+        <div className="connections-actions" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: '1.25rem' }}>
+          <Link to="/costo-de-vida-por-ciudad-rd" className="btn btn-secondary">
+            Comparar ciudades de RD <ArrowRight size={16} />
+          </Link>
+          <Link to="/calculadora-presupuesto-mensual-rd" className="btn btn-secondary">
+            Organizar presupuesto mensual <ArrowRight size={16} />
+          </Link>
+          <Link to="/cuanto-cuesta-vivir-solo-en-rd" className="btn btn-secondary">
+            Presupuesto para vivir solo <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
 
       <AdSlot id="costovida-before-faq" placement="Costo Vida - Antes del FAQ" />
 
