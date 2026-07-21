@@ -112,8 +112,8 @@ export const TOOLS_DIRECTORY: ToolItem[] = [
     keywords: ['costo', 'vida', 'vivir', 'gasto', 'mensual', 'servicios', 'alquiler', 'republica dominicana', 'precio']
   },
   {
-    title: 'Vivir Solo',
-    description: 'Calcula el presupuesto inicial y recurrente estimado para independizarte en RD.',
+    title: 'Calculadora para Vivir Solo en RD',
+    description: 'Estima alquiler, comida, transporte, servicios, ahorro y capital inicial para independizarte en República Dominicana.',
     route: '/cuanto-cuesta-vivir-solo-en-rd',
     category: 'costodevida',
     iconName: 'User',
@@ -128,8 +128,8 @@ export const TOOLS_DIRECTORY: ToolItem[] = [
     keywords: ['pareja', 'boda', 'vivir juntos', 'gastos', 'dividir', 'compartir', 'alquiler', 'hogar']
   },
   {
-    title: 'Mantener una Familia',
-    description: 'Estima el costo de crianza, alimentación, educación y salud familiar en RD.',
+    title: 'Presupuesto Familiar en RD',
+    description: 'Estima vivienda, alimentación, educación, salud, transporte y otros gastos mensuales según el tamaño de tu familia en RD.',
     route: '/cuanto-cuesta-mantener-una-familia-rd',
     category: 'costodevida',
     iconName: 'Users',
@@ -254,7 +254,7 @@ export const TOOLS_DIRECTORY: ToolItem[] = [
     keywords: ['licencia', 'conducir', 'intrant', 'renovar', 'examen', 'multas', 'carnet', 'aprendizaje']
   },
   {
-    title: 'Marbete',
+    title: 'Calculadora de Marbete RD',
     description: 'Calcula el costo del impuesto de circulación vehicular anual, incluyendo recargos por retraso.',
     route: '/calculadora-marbete-rd',
     category: 'tramites',
@@ -280,7 +280,7 @@ export const TOOLS_DIRECTORY: ToolItem[] = [
     keywords: ['servicios', 'hogar', 'casa', 'luz', 'agua', 'gas', 'internet', 'mantenimiento', 'presupuesto']
   },
   {
-    title: 'Luz',
+    title: 'Calculadora de Luz en RD',
     description: 'Estima tu factura eléctrica mensual en base a tus electrodomésticos y horas de uso diario.',
     route: '/calculadora-luz-rd',
     category: 'hogar',
