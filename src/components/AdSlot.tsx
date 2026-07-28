@@ -5,6 +5,10 @@ interface AdSlotProps {
   placement?: string;
 }
 
+interface AdSenseWindow extends Window {
+  adsbygoogle?: Array<Record<string, unknown>>;
+}
+
 function getAdSlotDetails(id: string, placement?: string) {
   const lowercaseId = id.toLowerCase();
   const lowercasePlacement = (placement || '').toLowerCase();
@@ -50,8 +54,9 @@ export default function AdSlot({ id = 'default-ad', placement }: AdSlotProps) {
     if (initialized.current) return;
     
     try {
-      if (adRef.current && (window as any).adsbygoogle) {
-        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+      if (adRef.current) {
+        const adSenseWindow = window as AdSenseWindow;
+        (adSenseWindow.adsbygoogle ??= []).push({});
         initialized.current = true;
       }
     } catch (e) {

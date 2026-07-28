@@ -138,7 +138,17 @@ function withSeo(html, route) {
     .replace(/<meta name="twitter:description" content="[^"]*"\s*\/?>/i, `<meta name="twitter:description" content="${escapeAttribute(meta.description)}" />`);
 
   output = output.replace(/<script id="seo-jsonld-schema" type="application\/ld\+json">[\s\S]*?<\/script>/gi, '');
-  return output.replace('</head>', `  <script id="seo-jsonld-schema" type="application/ld+json">${JSON.stringify(schema)}</script>\n  </head>`);
+  output = output.replace('</head>', `  <script id="seo-jsonld-schema" type="application/ld+json">${JSON.stringify(schema)}</script>\n  </head>`);
+
+  const crawlerFallback = `<main id="seo-fallback">
+    <nav aria-label="Navegación principal"><a href="/">Inicio</a> · <a href="/herramientas/">Herramientas</a> · <a href="/metodologia/">Metodología</a> · <a href="/fuentes/">Fuentes</a></nav>
+    <article>
+      <h1>${escapeAttribute(meta.title.replace(/\s*\|\s*CuantoCuestaRD$/, ''))}</h1>
+      <p>${escapeAttribute(meta.description)}</p>
+      <p>Estimación educativa basada en supuestos públicos y referencias dominicanas. Los resultados pueden variar según precios, tarifas y circunstancias particulares.</p>
+    </article>
+  </main>`;
+  return output.replace('<div id="root"></div>', `<div id="root">${crawlerFallback}</div>`);
 }
 
 fs.writeFileSync(indexPath, withSeo(baseIndex, '/'));
