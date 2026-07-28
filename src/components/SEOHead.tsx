@@ -38,7 +38,7 @@ function upsertLink(rel: string, href: string) {
 
 function getCanonicalUrl(canonicalPath?: string) {
   const rawPath = canonicalPath || window.location.pathname || '/';
-  const path = rawPath !== '/' ? rawPath.replace(/\/+$/, '') : '/';
+  const path = rawPath !== '/' ? `${rawPath.replace(/\/+$/, '')}/` : '/';
   return `${SITE_URL}${path}`;
 }
 

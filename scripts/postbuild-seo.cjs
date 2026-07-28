@@ -24,7 +24,7 @@ function priority(route) {
 }
 
 function canonical(route) {
-  return `${siteUrl}${route === '/' ? '/' : route}`;
+  return `${siteUrl}${route === '/' ? '/' : `${route.replace(/\/+$/, '')}/`}`;
 }
 
 function escapeAttribute(value) {
