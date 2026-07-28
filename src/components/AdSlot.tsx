@@ -46,26 +46,52 @@ function getAdSlotDetails(id: string, placement?: string) {
 
 export default function AdSlot({ id = 'default-ad', placement }: AdSlotProps) {
   const details = getAdSlotDetails(id, placement);
+  const containerRef = useRef<HTMLDivElement>(null);
   const adRef = useRef<HTMLModElement>(null);
   const initialized = useRef(false);
 
   useEffect(() => {
-    // Avoid double initialization in React StrictMode
     if (initialized.current) return;
-    
-    try {
-      if (adRef.current) {
+
+    const container = containerRef.current;
+    if (!container) return;
+
+    const initializeAd = () => {
+      if (initialized.current || !adRef.current || container.getBoundingClientRect().width <= 0) return;
+      try {
         const adSenseWindow = window as AdSenseWindow;
         (adSenseWindow.adsbygoogle ??= []).push({});
         initialized.current = true;
+      } catch (error) {
+        console.warn('AdSense load exception:', error);
       }
-    } catch (e) {
-      console.warn('AdSense load exception:', e);
-    }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          requestAnimationFrame(initializeAd);
+          if (initialized.current) observer.disconnect();
+        }
+      },
+      { rootMargin: '200px 0px' }
+    );
+    observer.observe(container);
+
+    const resizeObserver = new ResizeObserver(() => {
+      if (container.getBoundingClientRect().width > 0) initializeAd();
+    });
+    resizeObserver.observe(container);
+
+    return () => {
+      observer.disconnect();
+      resizeObserver.disconnect();
+    };
   }, []);
 
   return (
     <div 
+      ref={containerRef}
       className="ad-slot-container" 
       id={id}
       data-placement={placement}
