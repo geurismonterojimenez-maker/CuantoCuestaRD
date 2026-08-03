@@ -238,16 +238,16 @@ export const TOOLS_DIRECTORY: ToolItem[] = [
     keywords: ['tramites', 'papeles', 'gobierno', 'presupuesto', 'costo', 'dgii', 'intrant', 'pasaporte']
   },
   {
-    title: 'Pasaporte Dominicano',
-    description: 'Estima las tasas oficiales y requisitos para la emisión o renovación de pasaporte VIP o normal.',
+    title: 'Cuánto cuesta renovar el pasaporte dominicano',
+    description: 'Compara el costo de renovar o sacar el pasaporte dominicano por 6 o 10 años, normal o VIP, con requisitos y gastos adicionales.',
     route: '/cuanto-cuesta-renovar-pasaporte-dominicano',
     category: 'tramites',
     iconName: 'FileText',
     keywords: ['pasaporte', 'renovacion', 'emision', 'vip', 'consulado', 'viaje', 'libreta', 'pasaporte dominicano']
   },
   {
-    title: 'Licencia de Conducir',
-    description: 'Estima el costo de renovación o duplicado de tu licencia del INTRANT e incluye multas.',
+    title: 'Cuánto cuesta renovar la licencia en RD',
+    description: 'Calcula el costo de renovar, duplicar o sacar la licencia de conducir del INTRANT y suma multas pendientes cuando corresponda.',
     route: '/cuanto-cuesta-renovar-licencia-rd',
     category: 'tramites',
     iconName: 'ShieldCheck',
