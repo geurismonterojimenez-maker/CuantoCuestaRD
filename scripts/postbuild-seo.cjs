@@ -140,11 +140,17 @@ function withSeo(html, route) {
   output = output.replace(/<script id="seo-jsonld-schema" type="application\/ld\+json">[\s\S]*?<\/script>/gi, '');
   output = output.replace('</head>', `  <script id="seo-jsonld-schema" type="application/ld+json">${JSON.stringify(schema)}</script>\n  </head>`);
 
+  const isTool = meta.schemaType === 'SoftwareApplication';
+  const routeContext = isTool
+    ? `<h2>Cómo utilizar esta calculadora</h2><ol><li>Introduce cantidades actuales y revisa la unidad indicada.</li><li>Comprueba el desglose y los supuestos utilizados.</li><li>Compara el resultado con una cotización, tarifa o documento vigente.</li><li>Reserva un margen para cambios de precio e imprevistos.</li></ol><h2>Qué significa el resultado</h2><p>La cifra sirve para crear un presupuesto inicial y comparar escenarios. No constituye un precio garantizado. El monto real puede variar por ciudad, proveedor, fecha, impuestos, tipo de cambio, peso, consumo o características del servicio.</p>`
+    : `<h2>Cómo aprovechar esta información</h2><p>Utiliza esta página como punto de partida para organizar un gasto en República Dominicana. Revisa la fecha, identifica la categoría adecuada y abre las herramientas relacionadas para comparar más de un escenario antes de comprar o contratar.</p><h2>Qué debes confirmar</h2><p>Verifica el precio final directamente con el proveedor, organismo o comercio. Una tarifa publicada puede excluir impuestos, recargos, envío, instalación, financiamiento o condiciones particulares.</p>`;
+  const trustContext = `<h2>Metodología y fuentes</h2><p>CuantoCuestaRD combina referencias públicas, supuestos documentados y fórmulas reproducibles. Las estimaciones se separan por categoría para que puedas identificar qué variable produce una diferencia. Cuando existe una fuente oficial o comercial relevante, se recomienda consultarla antes de tomar una decisión.</p><h2>Preguntas frecuentes</h2><h3>¿El resultado es un precio oficial?</h3><p>No. Es una estimación educativa y debe confirmarse con una fuente vigente.</p><h3>¿La herramienta guarda mis datos?</h3><p>Las simulaciones públicas no crean deliberadamente un expediente personal con los importes introducidos.</p><h3>¿Cómo informo un dato desactualizado?</h3><p>Utiliza la página de contacto e incluye la URL, el precio observado, la fecha y una fuente verificable.</p><h2>Contenido relacionado</h2><p>Consulta el <a href="/herramientas/">directorio de herramientas</a>, la <a href="/metodologia/">metodología</a> y las <a href="/fuentes/">fuentes de datos</a> para comprender mejor cada cálculo.</p>`;
   const crawlerFallback = `<main id="seo-fallback">
     <nav aria-label="Navegación principal"><a href="/">Inicio</a> · <a href="/herramientas/">Herramientas</a> · <a href="/metodologia/">Metodología</a> · <a href="/fuentes/">Fuentes</a></nav>
     <article>
       <h1>${escapeAttribute(meta.title.replace(/\s*\|\s*CuantoCuestaRD$/, ''))}</h1>
       <p>${escapeAttribute(meta.description)}</p>
+      ${routeContext}${trustContext}
       <p>Estimación educativa basada en supuestos públicos y referencias dominicanas. Los resultados pueden variar según precios, tarifas y circunstancias particulares.</p>
     </article>
   </main>`;
