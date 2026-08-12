@@ -62,8 +62,8 @@ const toolMetadata = extractToolMetadata();
 
 const staticMetadata = new Map([
   ['/', {
-    title: 'CuantoCuestaRD | Calcula y compara costos en Republica Dominicana',
-    description: 'Calcula y compara costos reales de supermercado, canasta basica, tramites, vehiculos, courier y gastos mensuales en Republica Dominicana.',
+    title: 'Cuánto cuesta en RD: calculadoras de precios y gastos',
+    description: 'Calcula cuánto cuesta vivir, comprar, importar y hacer trámites en República Dominicana. Compara supermercado, courier, vehículos y gastos mensuales.',
     schemaType: 'WebSite'
   }],
   ['/herramientas', {
