@@ -26,6 +26,7 @@ export default function FAQSection({ items }: FAQSectionProps) {
           return (
             <div key={index} className="faq-item">
               <button
+                id={`faq-trigger-${index}`}
                 className="faq-trigger"
                 onClick={() => toggleItem(index)}
                 aria-expanded={isOpen}

@@ -49,6 +49,7 @@ export default function AdSlot({ id = 'default-ad', placement }: AdSlotProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const adRef = useRef<HTMLModElement>(null);
   const initialized = useRef(false);
+  const initializing = useRef(false);
 
   useEffect(() => {
     if (initialized.current) return;
@@ -57,13 +58,22 @@ export default function AdSlot({ id = 'default-ad', placement }: AdSlotProps) {
     if (!container) return;
 
     const initializeAd = () => {
-      if (initialized.current || !adRef.current || container.getBoundingClientRect().width <= 0) return;
+      const ad = adRef.current;
+      if (initialized.current || initializing.current || !ad) return;
+      if (ad.dataset.adsbygoogleStatus || ad.getBoundingClientRect().width <= 0) {
+        initialized.current = Boolean(ad.dataset.adsbygoogleStatus);
+        return;
+      }
+
+      initializing.current = true;
       try {
         const adSenseWindow = window as AdSenseWindow;
         (adSenseWindow.adsbygoogle ??= []).push({});
         initialized.current = true;
       } catch (error) {
         console.warn('AdSense load exception:', error);
+      } finally {
+        initializing.current = false;
       }
     };
 
@@ -79,7 +89,7 @@ export default function AdSlot({ id = 'default-ad', placement }: AdSlotProps) {
     observer.observe(container);
 
     const resizeObserver = new ResizeObserver(() => {
-      if (container.getBoundingClientRect().width > 0) initializeAd();
+      if (adRef.current?.getBoundingClientRect().width) initializeAd();
     });
     resizeObserver.observe(container);
 
